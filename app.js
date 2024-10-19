@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express')
-const PORT = 3000
 const path = require('path')
 const Blog = require('./models/blog')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const {checkForAuthenticationCookie} = require('./middlewares/authentication')
+const PORT = process.env.PORT || 3000;
 
 // Routers
 const userRoute = require('./routes/user')
@@ -12,7 +13,7 @@ const blogRoute = require('./routes/blog')
 
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/blogify')
+mongoose.connect(process.env.MONGO_URL)
 .then(e => console.log("MongoDB connected"))
  
 
